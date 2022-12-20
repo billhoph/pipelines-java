@@ -30,3 +30,9 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
+- task: prisma-cloud-compute-scan@3
+  inputs:
+    scanType: 'images'
+    twistlockService: 'prisma-cloud-demo'
+    artifact: 'nginx'

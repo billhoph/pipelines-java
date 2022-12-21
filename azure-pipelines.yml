@@ -16,11 +16,12 @@ steps:
   displayName: 'Install Python 3.8'
 - script: pip install checkov
   displayName: 'Install Checkov'
-- script: checkov -d . --bc-api-key 52659796-bd8c-483e-b515-051ca7931dfb::V8qmMJDkEhjXdBuu2vsvlJ+w8LY= --repo-id billhoph/pipelines-java --branch main
+- script: checkov -d . --bc-api-key 45af728a-ef0f-402e-b4c3-acb9ed5f2c01::Lio1DUw9nzQEJZPcd/DT2Y89n4E= --repo-id billhoph/pipelines-java --branch main
   displayName: 'Scan with Prisma Cloud'
   env:
     PRISMA_API_URL: https://api.prismacloud.io
 - task: Maven@3
+  displayName: 'Maven built'
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
@@ -32,6 +33,7 @@ steps:
     goals: 'package'
 
 - task: prisma-cloud-compute-scan@3
+  displayName: 'Container Image Scanning'
   inputs:
     scanType: 'images'
     twistlockService: 'prisma-cloud-demo'

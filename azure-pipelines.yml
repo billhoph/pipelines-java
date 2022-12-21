@@ -19,7 +19,7 @@ steps:
 - script: checkov -d . --bc-api-key 45af728a-ef0f-402e-b4c3-acb9ed5f2c01::Lio1DUw9nzQEJZPcd/DT2Y89n4E= --repo-id billhoph/pipelines-java --branch main
   displayName: 'Scan with Prisma Cloud'
   env:
-    PRISMA_API_URL: https://api.prismacloud.io
+    PRISMA_API_URL: https://api.sg.prismacloud.io
 - task: Maven@3
   displayName: 'Maven built'
   inputs:
